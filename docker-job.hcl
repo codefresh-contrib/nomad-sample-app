@@ -33,10 +33,10 @@ job "example-job" {
 
       # Configuration is specific to each driver.
       config {
-        image = "r.cfcr.io/$CF_REPO_OWNER/$CF_REPO_NAME:$CF_BRANCH_TAG_NORMALIZED"
+        image = "r.cfcr.io/$CF_ACCOUNT/$CF_REPO_NAME:$CF_BRANCH_TAG_NORMALIZED"
 
         auth {
-          username = "$CF_REPO_OWNER"
+          username = "$CF_ACCOUNT"
           password = "$CFCR_LOGIN_TOKEN"
           server_address  = "r.cfcr.io"
         }
