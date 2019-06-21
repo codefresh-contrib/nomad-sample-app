@@ -1,4 +1,9 @@
-# Codefresh Go example
+# Deploying to a Nomad cluster with Codefresh
+
+![Docker plus Nomad plus Codefresh](docker-nomad-codefresh.jpg)
+
+This is an example Terraform deployment that runs in a Codefresh pipeline using docker.
+More details can be found in [the documentation page](https://codefresh.io/docs/docs/yaml-examples/examples/terraform).
 
 Original source: https://github.com/callicoder/go-docker
 
@@ -20,12 +25,13 @@ and then visit in your browser
 
 ## Build in Codefresh
 
-Sample pipelines:
+Sample pipeline:
 
 * [Simple pipeline](codefresh.yml)
+* [Job template](docker-job.hcl)
 
 
-Read https://codefresh.io/docs/docs/yaml-examples/examples/nomad/ for more details
+Read also the [Codefresh Registry docs](https://codefresh.io/docs/docs/docker-registries/codefresh-registry/#generate-cfcr-login-token) for more details on accessing the registry from your Nomad cluster.
 
 
 
