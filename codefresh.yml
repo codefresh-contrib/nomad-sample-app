@@ -1,15 +1,32 @@
-version: '1.0'
+version: "1.0"
+stages:
+  - "clone"
+  - "build"
+  - "deploy"
 steps:
   main_clone:
-    title: Cloning main repository...
-    type: git-clone
-    repo: 'codefresh-contrib/golang-sample-app'
-    revision: master
-    git: github
-  MyAppDockerImage:
-    title: Building Docker Image
-    type: build
-    image_name: my-golang-image
-    working_directory: ./
-    tag: full
-    dockerfile: Dockerfile
+    type: "git-clone"
+    title: "Clone main repository..."
+    repo: "codefresh-contrib/nomad-sample-app"
+    revision: "${{CF_BRANCH}}"
+    stage: "clone"
+  build:
+    title: "Building Docker Image"
+    type: "build"
+    image_name: "nomad-sample-app"
+    tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
+    dockerfile: "Dockerfile"
+    stage: "build"
+  prepareJob:
+    title: "Preparing Nomad job"
+    image: bhgedigital/envsubst
+    stage: deploy
+    commands:
+      - envsubst < docker-job.hcl > docker-job-export.hcl
+      - cat docker-job-export.hcl
+  runJob:
+    title: "Deploying Nomad job"
+    image: djenriquez/nomad
+    stage: deploy
+    commands:
+      - nomad run docker-job-export.hcl  
