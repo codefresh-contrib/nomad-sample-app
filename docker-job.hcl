@@ -33,7 +33,13 @@ job "example-job" {
 
       # Configuration is specific to each driver.
       config {
-        image = "kkapelon/trivialgoweb:8ec675b"
+        image = "r.cfcr.io/$CF_REPO_OWNER/$CF_REPO_NAME:$CF_BRANCH_TAG_NORMALIZED"
+
+        auth {
+          username = "$CF_REPO_OWNER"
+          password = "$CFCR_LOGIN_TOKEN"
+          server_address  = "r.cfcr.io"
+        }
 
         port_map {
           http = 8080
