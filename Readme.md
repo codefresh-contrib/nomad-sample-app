@@ -2,8 +2,8 @@
 
 ![Docker plus Nomad plus Codefresh](docker-nomad-codefresh.jpg)
 
-This is an example Terraform deployment that runs in a Codefresh pipeline using docker.
-More details can be found in [the documentation page](https://codefresh.io/docs/docs/yaml-examples/examples/terraform).
+This is an example Nomad deployment that runs in a Codefresh pipeline using docker.
+More details can be found in [the documentation page](https://codefresh.io/docs/docs/yaml-examples/examples/nomad).
 
 Original source: https://github.com/callicoder/go-docker
 
