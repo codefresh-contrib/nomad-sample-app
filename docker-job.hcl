@@ -22,7 +22,7 @@ job "example-job" {
   # placed on the same host.
   group "example-group" {
     # Specify the number of these tasks we want.
-    count = 1
+    count = 3
 
     # Create an individual task (unit of work). This particular
     # task utilizes a Docker container to front a web application.
@@ -33,7 +33,11 @@ job "example-job" {
 
       # Configuration is specific to each driver.
       config {
-        image = "kkapelon/trivialgoweb"
+        image = "kkapelon/trivialgoweb:8ec675b"
+
+        port_map {
+          http = 8080
+        }
       }
 
       # The service block tells Nomad how to register this service
@@ -62,9 +66,8 @@ job "example-job" {
           mbits = 100
 
          
-          port "http" {
-              static=8080
-          }
+          port "http" {}
+      
 
          
         }
